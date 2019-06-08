@@ -1,4 +1,4 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+﻿<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <?php $this->need('header.php'); ?>
 
 <div class="col-mb-12 col-8" id="main" role="main">
@@ -34,6 +34,17 @@
                 }
             }
 
+            function curl_get_content($url){
+                $ch = curl_init();
+                $timeout = 5;
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+                $contents = mb_convert_encoding(curl_exec($ch),'utf-8','GB2312');
+                curl_close($ch);
+                return $contents;
+            }
+
             if($tag == 'book'){
                 $url = explode(']',$content)[1];
                 $url = str_replace(' ','%20',$url);
@@ -43,18 +54,18 @@
                 $author = explode(',',$tag_total)[1];
                 $age = explode(',',$tag_total)[2];
                 $engine = 'https://www.baidu.com/s?wd=';
-
                 echo_author_and_age($author,$age,$engine);
 
                 echo '<hr>';
                 $book_content =  file_get_contents($url);
+                #$book_content = curl_get_content($url);
+                #echo '<iframe src='.$url.'>';
                 $trans_content = iconv("gbk", "utf-8//IGNORE",$book_content);
                 if($trans_content == ''){
                     echo '<strong>不能成功加載資源</strong>';
                 }else{
                     echo nl2br($trans_content);
                 }
-
             }elseif($tag == 'poem'){
                 $author = explode(',',$tag_total)[1];
                 $age = explode(',',$tag_total)[2];
@@ -64,11 +75,33 @@
 
                 echo '<hr>';
                 $poem_body = explode(']',$content)[1];
-                echo '<center>'.nl2br($poem_body)."</center>";
+                echo '<center>'.explode('>>',nl2br($poem_body))[0]."</center>";
+
+            }elseif ($tag == 'download'){
+                $author = explode(',',$tag_total)[1];
+                $age = explode(',',$tag_total)[2];
+                $describe = explode(',',$tag_total)[3];
+
+                $engine = 'https://www.baidu.com/s?wd=';
+                echo_author_and_age($author,$age,$engine);
+
+                echo '<hr>';
+
+                echo '<h2>書籍描述：</h2>';
+                if($describe == 'unknown'){
+                    echo  '<br><strong>描述: </strong>' .'未知';
+                }else{
+                    echo '<br><strong>描述: </strong>' . $describe;
+                }
+
+                echo '<br><br><h2>下載：</h2>';
+                echo '<br>書籍暫時不提供在線預覽，點擊按鈕下載：';
+                $link = explode('<',explode(']',$content)[1])[0];
+                #echo $link;
+                echo '<a href="'.$link.'" download='.$this->title.'.txt>'.'<input name="下載" type="button" id="btn1" title="下載" value="下載" /></a>';
 
             }else{
                 echo $content;
-
             }
             ?>
         </div>

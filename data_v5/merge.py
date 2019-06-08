@@ -19,6 +19,7 @@ print(len(data))
 
 age = '清代'
 author = 'unknown'
+info = '《四库全书》全称《钦定四库全书》，是清代乾隆时期编修的大型丛书。在清高宗乾隆帝的主持下，由纪昀等360多位高官、学者编撰，3800多人抄写，耗时十三年编成。'
 
 
 cid_begin = 50662 + 1
@@ -29,7 +30,7 @@ for id in range(cid_begin,cid_begin+len(data)):
     print(title)
     print(url)
     count += 1
-    library.addMethod([id,title,'unknown',age,url],'book')
+    library.addMethod([id,title,'纪昀',age,info,url],'download')
 
 
 library.save_change()
