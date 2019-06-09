@@ -9,7 +9,7 @@ $this->need('header.php');
             <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
                 <h2 class="post-title" itemprop="name headline"><a itemprop="url" href="<?php $this->permalink() ?>"><?php $this->title() ?></a></h2>
                 <ul class="post-meta">
-                    <li><?php _e('上傳時間: '); ?><time datetime="<?php $this->date('c'); ?>" itemprop="datePublished"><?php $this->date(); ?></time></li>
+                    <li><?php _e('收錄時間: '); ?><time datetime="<?php $this->date('c'); ?>" itemprop="datePublished"><?php $this->date(); ?></time></li>
                 </ul>
             </article>
         <?php endwhile; ?>

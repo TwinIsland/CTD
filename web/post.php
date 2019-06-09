@@ -114,10 +114,6 @@
 
     <?php $this->need('comments.php'); ?>
 
-    <ul class="post-near">
-        <li>上壹篇: <?php $this->thePrev('%s','沒有了'); ?></li>
-        <li>下壹篇: <?php $this->theNext('%s','沒有了'); ?></li>
-    </ul>
 </div><!-- end #main-->
 
 <?php $this->need('sidebar.php'); ?>
