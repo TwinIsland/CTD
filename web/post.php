@@ -1,11 +1,15 @@
-﻿<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+﻿<head>
+    <script src="/pace.js"></script>
+    <link href="/pace.css" rel="stylesheet" />
+</head>
+<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <?php $this->need('header.php'); ?>
 
 <div class="col-mb-12 col-8" id="main" role="main">
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <h1 class="post-title" itemprop="name headline"><a itemprop="url" href="<?php $this->permalink() ?>"><?php $this->title() ?></a></h1>
         <ul class="post-meta">
-            <li><?php _e('發布時間: '); ?><time datetime="<?php $this->date('c'); ?>" itemprop="datePublished"><?php $this->date(); ?></time></li>
+            <li><?php _e('收錄時間: '); ?><time datetime="<?php $this->date('c'); ?>" itemprop="datePublished"><?php $this->date(); ?></time></li>
         </ul>
         <div class="post-content" itemprop="articleBody">
             <?php
@@ -34,6 +38,13 @@
                 }
             }
 
+            function font_remind(){
+                echo '<div class="font-declare">
+                      <blockquote>如果頁面的字體不能正常顯示，請<a href="/index.php/font.html" target="_blank">點我</a>查看解決方法</blockquote>
+                      </div>';
+                echo '<br>';
+            }
+
             function curl_get_content($url){
                 $ch = curl_init();
                 $timeout = 5;
@@ -44,7 +55,6 @@
                 curl_close($ch);
                 return $contents;
             }
-
             if($tag == 'book'){
                 $url = explode(']',$content)[1];
                 $url = str_replace(' ','%20',$url);
@@ -57,6 +67,7 @@
                 echo_author_and_age($author,$age,$engine);
 
                 echo '<hr>';
+                font_remind();
                 $book_content =  file_get_contents($url);
                 #$book_content = curl_get_content($url);
                 #echo '<iframe src='.$url.'>';
@@ -71,9 +82,15 @@
                 $age = explode(',',$tag_total)[2];
                 $engine = 'https://www.baidu.com/s?wd=';
 
+                echo '<br>';
+                echo '<center><h1>'.$this->title.'</center></h1>';
+
+                echo '<div align="center">';
                 echo_author_and_age($author,$age,$engine);
 
+                echo '</div>';
                 echo '<hr>';
+                //font_remind();
                 $poem_body = explode(']',$content)[1];
                 echo '<center>'.explode('>>',nl2br($poem_body))[0]."</center>";
 

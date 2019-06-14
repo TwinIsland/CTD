@@ -1,3 +1,7 @@
+<head>
+    <script src="/pace.js"></script>
+    <link href="/pace.css" rel="stylesheet" />
+</head>
 <?php
 
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
