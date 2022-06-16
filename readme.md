@@ -24,3 +24,7 @@ ctd_db.commit()
 ctd_db.close()
 
 ```
+
+## Database
+
+![Snipaste_2022-06-15_20-30-33](pic/Snipaste_2022-06-15_20-30-33.png)
