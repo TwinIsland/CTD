@@ -35,19 +35,15 @@ def rec_msg(msg, sId="ADMIN"):
 class CTD:
     def __init__(self):
         if not exists('ctd.db'):
-            print('database no found')
-            if input("input 'new' to generate: ") == "new":
-                self.new_database()
-                input("please restart the core...")
-            exit()
+            self.__new_database__()
         self.conn = sqlite3.connect('ctd.db')
         self.c = self.conn.cursor()
         print(rec_msg("Start CTD DB Instance"))
 
-    def new_database(self):
+    def __new_database__(self):
         if exists('ctd.db'):
             print("database already exist!")
-            exit()
+            return
         self.conn = sqlite3.connect('ctd.db')
         self.c = self.conn.cursor()
         self.c.execute('''CREATE TABLE Data
@@ -71,7 +67,7 @@ class CTD:
 
     def push(self, data: list[dict]):
         print(rec_msg("begin pushing {} data".format(str(len(data)))))
-        type_counter, fail_counter, counter = 0, 0, 0
+        type_counter, fail_counter, ok_counter = 0, 0, 0
         for item in data:
             item['publish'] = "'" + item['publish'] + "'" if item['publish'] != "NULL" else item['publish']
             item['author'] = "'" + item['author'] + "'" if item['author'] != "NULL" else item['author']
@@ -81,7 +77,7 @@ class CTD:
                                                                      p=item['publish'],  # set as "NULL" if no info
                                                                      a=item['author'],  # set as "NULL" if no info
                                                                      c=item['content']))
-                cid = self.c.lastrowid
+                cur_cid = self.c.lastrowid
                 type_info = list(self.c.execute("SELECT * FROM Type WHERE DESC='{}';".format(item['type'])))
                 if len(type_info) == 0:
                     self.c.execute("INSERT INTO Type (Desc) \
@@ -89,14 +85,14 @@ class CTD:
                     type_counter += 1
                 type_info = list(self.c.execute("SELECT * FROM Type WHERE DESC='{}';".format(item['type'])))
                 self.c.execute("INSERT INTO Relation (CID, TID) \
-                                VALUES ({cid},{tid})".format(cid=cid,
+                                VALUES ({cid},{tid})".format(cid=cur_cid,
                                                              tid=type_info[0][0]))
-                counter += 1
+                ok_counter += 1
             except Exception as e:
                 fail_counter += 1
-                print("fail to push: {} -- {}".format(item["title"], str(e) + '\n'))
-        print(ok_msg("successful pushing {} books and {} types, fail {}".
-                     format(str(counter), str(type_counter), str(fail_counter))))
+                print("fail to push: {} -- {}".format(item["title"], str(e)[:50] + '\n'))
+        print(ok_msg("successful pushing {} books and {} types, {} fail".
+                     format(str(ok_counter), str(type_counter), str(fail_counter))))
 
     def commit(self):
         self.conn.commit()
@@ -112,7 +108,7 @@ class CTD:
         print(ok_msg("database closed"))
 
     def length(self):
-        r = self.c.execute("SELECT max(rowid) from Data")
+        self.c.execute("SELECT max(rowid) from Data")
         return self.c.fetchone()[0]
 
 

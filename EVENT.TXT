@@ -48,3 +48,24 @@
 [V] sId: ADMIN --- successful pushing 3 books and 2 types, fail 0    2022-06-16 00:34:28
 [V] sId: ADMIN --- committed    2022-06-16 00:34:28
 [V] sId: ADMIN --- database closed    2022-06-16 00:34:28
+[-] sId: ADMIN --- Start CTD DB Instance    2022-06-16 12:14:02
+[-] sId: ADMIN --- begin pushing 3 data    2022-06-16 12:14:02
+[V] sId: ADMIN --- successful pushing 3 books and 2 types, fail 0    2022-06-16 12:14:02
+[V] sId: ADMIN --- committed    2022-06-16 12:14:02
+[V] sId: ADMIN --- database closed    2022-06-16 12:14:02
+[V] sId: ADMIN --- Complete construct database    2022-06-16 12:17:58
+[-] sId: ADMIN --- Start CTD DB Instance    2022-06-16 12:17:58
+[-] sId: ADMIN --- begin pushing 3 data    2022-06-16 12:17:58
+[V] sId: ADMIN --- successful pushing 3 books and 2 types, 0 fail    2022-06-16 12:17:58
+[V] sId: ADMIN --- committed    2022-06-16 12:17:58
+[V] sId: ADMIN --- database closed    2022-06-16 12:17:58
+[-] sId: ADMIN --- Start CTD DB Instance    2022-06-16 12:18:57
+[-] sId: ADMIN --- begin pushing 3 data    2022-06-16 12:18:57
+[V] sId: ADMIN --- successful pushing 0 books and 0 types, 3 fail    2022-06-16 12:18:57
+[V] sId: ADMIN --- committed    2022-06-16 12:18:57
+[V] sId: ADMIN --- database closed    2022-06-16 12:18:57
+[-] sId: ADMIN --- Start CTD DB Instance    2022-06-16 12:20:19
+[-] sId: ADMIN --- begin pushing 3 data    2022-06-16 12:20:19
+[V] sId: ADMIN --- successful pushing 0 books and 0 types, 3 fail    2022-06-16 12:20:19
+[V] sId: ADMIN --- committed    2022-06-16 12:20:19
+[V] sId: ADMIN --- database closed    2022-06-16 12:20:19

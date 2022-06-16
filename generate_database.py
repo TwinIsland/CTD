@@ -1,6 +1,5 @@
 import sqlite3
 from os.path import exists
-import eventRec
 
 if exists('ctd.db'):
     print("database already exist!")
@@ -26,4 +25,3 @@ c.execute('''CREATE TABLE Type
 
 conn.commit()
 conn.close()
-print(eventRec.ok_msg("Complete construct database"))
