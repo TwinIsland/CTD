@@ -69,3 +69,11 @@
 [V] sId: ADMIN --- successful pushing 0 books and 0 types, 3 fail    2022-06-16 12:20:19
 [V] sId: ADMIN --- committed    2022-06-16 12:20:19
 [V] sId: ADMIN --- database closed    2022-06-16 12:20:19
+[-] sId: ADMIN --- Start Web DB Instance    2022-06-16 21:53:36
+[-] sId: ADMIN --- begin pushing 4 data    2022-06-16 21:53:36
+[V] sId: ADMIN --- successful pushing 4 books and 2 types, 0 fail    2022-06-16 21:53:36
+[V] sId: ADMIN --- database closed    2022-06-16 21:53:36
+[-] sId: ADMIN --- Start Web DB Instance    2022-06-16 21:55:17
+[-] sId: ADMIN --- begin pushing 4 data    2022-06-16 21:55:17
+[V] sId: ADMIN --- successful pushing 4 books and 2 types, 0 fail    2022-06-16 21:55:17
+[V] sId: ADMIN --- database closed    2022-06-16 21:55:17

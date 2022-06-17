@@ -58,8 +58,10 @@ class WebDB:
         for item in data:
             is_uid_update, is_mid_update, is_period_type_update = False, False, False
             try:
-                item['publish'] = "unknown" if item['publish'] == "NULL" else item['publish']
-                item['author'] = "unknown" if item['author'] != "NULL" else item['author']
+                item['publish'] = "unknown" if item['publish'] == "NULL" else item['publish'].replace(" ", "_")
+                item['author'] = "unknown" if item['author'] == "NULL" else item['author']
+                item['content'] = item['content'].replace("'", "''")
+
                 author_info = list(self.c.execute("SELECT * FROM ctd_users WHERE screenName='{author}';"
                                                   .format(author=item['author'])))
                 if len(author_info) == 0:
