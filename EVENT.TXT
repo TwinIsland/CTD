@@ -77,3 +77,39 @@
 [-] sId: ADMIN --- begin pushing 4 data    2022-06-16 21:55:17
 [V] sId: ADMIN --- successful pushing 4 books and 2 types, 0 fail    2022-06-16 21:55:17
 [V] sId: ADMIN --- database closed    2022-06-16 21:55:17
+[-] sId: ADMIN --- Start Web DB Instance    2022-06-17 13:13:23
+[-] sId: ADMIN --- begin pushing 4 data    2022-06-17 13:13:23
+[V] sId: ADMIN --- successful pushing 4 books and 2 types, 0 fail    2022-06-17 13:13:23
+[V] sId: ADMIN --- database closed    2022-06-17 13:13:23
+[-] sId: ADMIN --- Start Web DB Instance    2022-06-17 13:14:24
+[-] sId: ADMIN --- begin pushing 4 data    2022-06-17 13:14:24
+[V] sId: ADMIN --- successful pushing 4 books and 2 types, 0 fail    2022-06-17 13:14:24
+[V] sId: ADMIN --- commit ok    2022-06-17 13:14:24
+[V] sId: ADMIN --- database closed    2022-06-17 13:14:24
+[-] sId: ADMIN --- Start Web DB Instance    2022-06-17 13:15:02
+[-] sId: ADMIN --- begin pushing 4 data    2022-06-17 13:15:02
+[V] sId: ADMIN --- successful pushing 0 books and 0 types, 4 fail    2022-06-17 13:15:02
+[V] sId: ADMIN --- commit ok    2022-06-17 13:15:02
+[V] sId: ADMIN --- database closed    2022-06-17 13:15:02
+[-] sId: ADMIN --- Start Web DB Instance    2022-06-17 13:21:01
+[-] sId: ADMIN --- begin pushing 4 data    2022-06-17 13:21:01
+[V] sId: ADMIN --- pushing 3 books and 2 types, 1 fail    2022-06-17 13:21:01
+[V] sId: ADMIN --- commit ok    2022-06-17 13:21:01
+[V] sId: ADMIN --- database closed    2022-06-17 13:21:01
+[-] sId: ADMIN --- Start Web DB Instance    2022-06-17 13:22:20
+[-] sId: ADMIN --- begin pushing 4 data    2022-06-17 13:22:20
+[-] sId: ADMIN --- Start Web DB Instance    2022-06-17 13:23:11
+[-] sId: ADMIN --- begin pushing 4 data    2022-06-17 13:23:11
+[V] sId: ADMIN --- pushing 4 books and 2 types, 0 fail    2022-06-17 13:23:11
+[V] sId: ADMIN --- commit ok    2022-06-17 13:23:11
+[V] sId: ADMIN --- database closed    2022-06-17 13:23:11
+[-] sId: ADMIN --- Start Web DB Instance    2022-06-17 13:27:52
+[-] sId: ADMIN --- begin pushing 4 data    2022-06-17 13:27:52
+[V] sId: ADMIN --- pushing 4 books and 2 types, 0 fail    2022-06-17 13:27:52
+[V] sId: ADMIN --- commit ok    2022-06-17 13:27:52
+[V] sId: ADMIN --- database closed    2022-06-17 13:27:52
+[-] sId: ADMIN --- Start Web DB Instance    2022-06-17 13:30:16
+[-] sId: ADMIN --- begin pushing 4 data    2022-06-17 13:30:16
+[V] sId: ADMIN --- pushing 4 books and 2 types, 0 fail    2022-06-17 13:30:16
+[V] sId: ADMIN --- commit ok    2022-06-17 13:30:16
+[V] sId: ADMIN --- database closed    2022-06-17 13:30:16

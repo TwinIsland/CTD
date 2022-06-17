@@ -26,4 +26,5 @@ test = [
 
 ctd_db = TypechoDB.WebDB()
 ctd_db.push(test)
+ctd_db.commit()
 ctd_db.close()
