@@ -106,3 +106,4 @@ More configuration information please refer Tencent API document.
 
 Redesign and revise based on default theme of Typecho, compatible with `TencentCosDB`
 
+![demo](pic/demo.png)
