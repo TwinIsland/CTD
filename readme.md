@@ -13,7 +13,7 @@ ctd_db = CTD.CTD()
 # data structure
 data = [
     {
-    "title": "book title",
+     "title": "book title",
      "author": "book author",    # Set as "NULL" if no info
      "content": "content of the book",
      "type": "book type",
