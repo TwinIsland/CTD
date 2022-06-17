@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c9de09f-a9e2-41fe-8dd6-5bed2dac5c3b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/TypechoDB.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TypechoDB.py" beforeDir="false" afterPath="$PROJECT_DIR$/TypechoDB.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +23,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/CTD.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TypechoDB.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/generate_database.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/test.py" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -38,6 +43,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/TwIsland/Desktop/新建文件夹",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -129,7 +135,9 @@
       <updated>1655399520770</updated>
       <workItem from="1655399522406" duration="1689000" />
       <workItem from="1655413391885" duration="1727000" />
-      <workItem from="1655415516543" duration="5485000" />
+      <workItem from="1655415516543" duration="6828000" />
+      <workItem from="1655423719833" duration="17000" />
+      <workItem from="1655423750521" duration="1084000" />
     </task>
     <servers />
   </component>

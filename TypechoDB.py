@@ -39,7 +39,7 @@ class WebDB:
         if not exists('web.db'):
             print("init fail")
             raise FileNotFoundError("cannot find db, place the web.db under the same fold")
-        self.conn = sqlite3.connect('data.db')
+        self.conn = sqlite3.connect('web.db')
         self.c = self.conn.cursor()
         self.update_last_pointer()
         print(rec_msg("Start Web DB Instance"))
@@ -48,52 +48,86 @@ class WebDB:
         content_last = list(self.c.execute("SELECT * FROM ctd_contents ORDER BY cid DESC LIMIT 1"))
         author_last = list(self.c.execute("SELECT * FROM ctd_users ORDER BY uid DESC LIMIT 1"))
         meta_last = list(self.c.execute("SELECT * FROM ctd_metas ORDER BY mid DESC LIMIT 1"))
-        self.cid_last = content_last[0][0]
-        self.uid_last = author_last[0][0]
-        self.mid_last = meta_last[0][0]
+        self.cid_last = int(content_last[0][0])
+        self.uid_last = int(author_last[0][0])
+        self.mid_last = int(meta_last[0][0])
 
     def push(self, data: list[dict]):
         print(rec_msg("begin pushing {} data".format(str(len(data)))))
         type_counter, fail_counter, ok_counter = 0, 0, 0
         for item in data:
+            is_uid_update, is_mid_update, is_period_type_update = False, False, False
             try:
-                author_info = list(self.c.execute("SELECT * FROM ctd_users WHERE screenName='{}';"
-                                                  .format(item['author'])))
+                item['publish'] = "unknown" if item['publish'] == "NULL" else item['publish']
+                item['author'] = "unknown" if item['author'] != "NULL" else item['author']
+                author_info = list(self.c.execute("SELECT * FROM ctd_users WHERE screenName='{author}';"
+                                                  .format(author=item['author'])))
                 if len(author_info) == 0:
                     self.c.execute("INSERT INTO ctd_users (uid,screenName) \
                                     VALUES ({uid},'{sn}')".
                                    format(uid=self.uid_last + 1,
                                           sn=item["author"]))
-                item['publish'] = "unknown" if item['publish'] == "NULL" else item['publish']
-                item['author'] = "unknown" if item['author'] != "NULL" else item['author']
-                self.c.execute("INSERT INTO ctd_contents (cid,title,created,modified,text,order,authorId,type,status) \
-                                VALUES ({c},'{t}',{time},{time},'{text}',0,{au},'page','publish'})".
+
+                    author_id = self.uid_last + 1
+                    is_uid_update = True
+                else:
+                    author_id = author_info[0][0]
+
+                self.c.execute("INSERT INTO ctd_contents (cid,title,created,modified,text,authorId,type,status,"
+                               "allowComment, allowPing) \
+                                VALUES ({c},'{t}',{time},{time},'{text}',{au},'page','publish',1,1)".
                                format(c=self.cid_last + 1,
                                       t=item['title'],
                                       time=int(time.time()),
                                       text=item['publish'] + '|' + item['content'],
-                                      au=self.uid_last + 1))
-                type_info = list(self.c.execute("SELECT * FROM ctd_metas WHERE name='{}';".format(item['type'])))
+                                      au=author_id))
+
+                type_period_info = list(self.c.execute("SELECT * FROM ctd_metas WHERE name='{}'".
+                                                       format("period_" + item['publish'])))
+                if len(type_period_info) == 0:
+                    self.c.execute("INSERT INTO ctd_metas (mid,name,slug,type,count,parent) \
+                                                        VALUES ({mid},'{name}','{name}','category',1,0)".
+                                   format(mid=self.mid_last + 1,
+                                          name="period_" + item["publish"]))
+                    is_period_type_update = True
+                else:
+                    self.c.execute("Update ctd_metas set count = {count} where mid = {mid}".
+                                   format(count=type_period_info[0][5] + 1,
+                                          mid=type_period_info[0][0]))
+
+                type_info = list(self.c.execute("SELECT * FROM ctd_metas WHERE name='{}'".format(item['type'])))
                 if len(type_info) == 0:
                     self.c.execute("INSERT INTO ctd_metas (mid,name,slug,type,count,parent) \
                                     VALUES ({mid},'{name}','{name}','category',1,0)".
-                                   format(mid=self.mid_last + 1,
+                                   format(mid=self.mid_last + 1 + int(is_period_type_update),
                                           name=item["type"]))
                     type_counter += 1
+                    type_mid = self.mid_last + 1
+                    is_mid_update = True
+                else:
+                    self.c.execute("Update ctd_metas set count = {count} where mid = {mid}".
+                                   format(count=type_info[0][5] + 1,
+                                          mid=type_info[0][0] + int(is_period_type_update)))
+                    type_mid = type_info[0][0]
+
                 self.c.execute("INSERT INTO ctd_relationships (cid, mid) \
                                 VALUES ({cid},{mid})".format(cid=self.cid_last + 1,
-                                                             mid=self.mid_last + 1))
-                ok_counter += 1
+                                                             mid=type_mid + int(is_period_type_update)))
+
             except Exception as e:
+                self.conn.rollback()
                 fail_counter += 1
                 print("fail to push: {} -- {}".format(item["title"], str(e)[:50] + '\n'))
-        self.update_last_pointer()
+                continue
+
+            self.uid_last += int(is_uid_update)
+            self.mid_last += int(is_mid_update) + int(is_period_type_update)
+            self.cid_last += 1
+            ok_counter += 1
+            self.conn.commit()
+
         print(ok_msg("successful pushing {} books and {} types, {} fail".
                      format(str(ok_counter), str(type_counter), str(fail_counter))))
-
-    def commit(self):
-        self.conn.commit()
-        print(ok_msg("committed"))
 
     def connect(self):
         self.conn = sqlite3.connect('ctd.db')
@@ -107,4 +141,3 @@ class WebDB:
     def length(self):
         self.c.execute("SELECT max(rowid) from Data")
         return self.c.fetchone()[0]
-
