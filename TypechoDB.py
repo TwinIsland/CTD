@@ -89,11 +89,16 @@ class WebDB:
                                                         VALUES ({mid},'{name}','{name}','category',1,0)".
                                    format(mid=self.mid_last + 1,
                                           name="period_" + item["publish"]))
+                    type_period_mid = self.mid_last + 1
                     is_period_type_update = True
                 else:
+                    type_period_mid = type_period_info[0][0]
                     self.c.execute("Update ctd_metas set count = {count} where mid = {mid}".
                                    format(count=type_period_info[0][5] + 1,
                                           mid=type_period_info[0][0]))
+                self.c.execute("INSERT INTO ctd_relationships (cid, mid) \
+                                VALUES ({cid},{mid})".format(cid=self.cid_last + 1,
+                                                             mid=type_period_mid))
 
                 type_info = list(self.c.execute("SELECT * FROM ctd_metas WHERE name='{}'".format(item['type'])))
                 if len(type_info) == 0:
@@ -102,17 +107,17 @@ class WebDB:
                                    format(mid=self.mid_last + 1 + int(is_period_type_update),
                                           name=item["type"]))
                     type_counter += 1
-                    type_mid = self.mid_last + 1
+                    type_mid = self.mid_last + 1 + int(is_period_type_update)
                     is_mid_update = True
                 else:
+                    type_mid = type_info[0][0]
                     self.c.execute("Update ctd_metas set count = {count} where mid = {mid}".
                                    format(count=type_info[0][5] + 1,
-                                          mid=type_info[0][0] + int(is_period_type_update)))
-                    type_mid = type_info[0][0]
+                                          mid=type_mid))
 
                 self.c.execute("INSERT INTO ctd_relationships (cid, mid) \
                                 VALUES ({cid},{mid})".format(cid=self.cid_last + 1,
-                                                             mid=type_mid + int(is_period_type_update)))
+                                                             mid=type_mid))
 
             except Exception as e:
                 self.conn.rollback()
