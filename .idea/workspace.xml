@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c9de09f-a9e2-41fe-8dd6-5bed2dac5c3b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/TencentCOS.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testTencentCos.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EVENT.TXT" beforeDir="false" afterPath="$PROJECT_DIR$/EVENT.TXT" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TypechoDB.py" beforeDir="false" afterPath="$PROJECT_DIR$/TypechoDB.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/useful.md" beforeDir="false" afterPath="$PROJECT_DIR$/useful.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testTypechoDB.py" beforeDir="false" afterPath="$PROJECT_DIR$/testTypechoDB.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webdb_sample.db" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +208,7 @@
       <workItem from="1655423719833" duration="17000" />
       <workItem from="1655423750521" duration="1084000" />
       <workItem from="1655433783109" duration="4850000" />
-      <workItem from="1655488583954" duration="7577000" />
+      <workItem from="1655488583954" duration="10559000" />
     </task>
     <servers />
   </component>

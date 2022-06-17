@@ -24,7 +24,7 @@ test = [
      "publish": "唐朝"},
 ]
 
-ctd_db = TypechoDB.WebDB()
+ctd_db = TypechoDB.WebDB("web.db")
 ctd_db.push(test)
 ctd_db.commit()
 ctd_db.close()
