@@ -89,7 +89,7 @@ data = [
     {
      "title": "book title",
      "author": "book author",    # Set as "NULL" if no info
-     "content": "content of the book",
+     "publish": "when publish",  # Set as "NULL" if no info
      "type": "book type",
      "dir": "file address"  
     }  
