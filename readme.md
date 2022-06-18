@@ -59,7 +59,7 @@ For this form of database, due to the characteristic of Typecho, the web may cra
 
 Its usage is nearly the same as CTD 
 
-## TencentCosDB
+## CosDB
 
 Typecho Database API with Tencent Cos OSS. I also distribute this plan on my own CTD website.
 

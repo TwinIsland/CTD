@@ -1,4 +1,9 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+
+<?php
+$cos_url = "https://cdn.erdao.me/ctd"
+?>
+
 <div class="col-mb-12 col-offset-1 col-3 kit-hidden-tb" id="secondary" role="complementary">
     <?php if (!empty($this->options->sidebarBlock) && in_array('ShowRecentPosts', $this->options->sidebarBlock)): ?>
 
@@ -16,17 +21,9 @@
         </section>
     <?php endif; ?>
 
-    <?php if (!empty($this->options->sidebarBlock) && in_array('ShowRecentComments', $this->options->sidebarBlock)): ?>
-        <section class="widget">
-            <h3 class="widget-title"><?php _e('最近書評'); ?></h3>
-            <ul class="widget-list">
-                <?php $this->widget('Widget_Comments_Recent')->to($comments); ?>
-                <?php while($comments->next()): ?>
-                    <li><a href="<?php $comments->permalink(); ?>"><?php $comments->author(false); ?></a>: <?php $comments->excerpt(35, '...'); ?></li>
-                <?php endwhile; ?>
-            </ul>
-        </section>
-    <?php endif; ?>
-
+    <section class="widget">
+        <h3 class="widget-title"><?php _e('數據版本'); ?></h3>
+        <p style="font-family: cursive"> <?php echo file_get_contents($cos_url.'/version') ?></p>
+    </section>
 
 </div><!-- end #sidebar -->

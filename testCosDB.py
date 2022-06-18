@@ -2,7 +2,7 @@ from qcloud_cos import CosConfig
 from qcloud_cos import CosS3Client
 import sys
 import logging
-import TencentCOS
+import CosDB
 import os
 
 logging.basicConfig(level=logging.INFO, stream=sys.stdout)
@@ -48,7 +48,7 @@ for i in data_n:
 print(db[1])
 
 
-dat = TencentCOS.CosDB(db_name="web.db",
+dat = CosDB.CosDB(db_name="web.db",
                        cos_client=client,
                        bucket="")
 

@@ -69,10 +69,81 @@ class CosDB:
                 if not exists(item["dir"]):
                     raise FileNotFoundError("cannot find book: " + item["title"])
 
-                # insert content
-                self.c.execute("UPDATE ctd_contents SET text='{text}' WHERE title='{title}'".
-                               format(title=item['title'],
-                                      text=item['publish'] + '|' + item["author"]))
+                # update content
+
+                content_info = list(self.c.execute("SELECT * FROM ctd_contents WHERE title='{}'".
+                                                       format(item["title"])))
+
+                if len(content_info) != 0:
+                    self.c.execute("UPDATE ctd_contents SET text='{text}' WHERE title='{title}'".
+                                   format(title=item['title'],
+                                          text=item['publish'] + '|' + item["author"]))
+                else:
+                    continue
+
+                cur_cid = content_info[0][0]
+
+                # update type->period information, formate: period_{period desc}
+                type_period_info = list(self.c.execute("SELECT * FROM ctd_metas WHERE name='{}'".
+                                                       format("period_" + item['publish'])))
+                if len(type_period_info) == 0:
+                    self.c.execute("INSERT INTO ctd_metas (name,slug,type,count,parent) \
+                                                           VALUES ('{name}','{name}','category',1,0)".
+                                   format(name="period_" + item["publish"]))
+
+                    cur_mid_last = self.c.lastrowid
+
+                    self.c.execute("INSERT INTO ctd_relationships (cid, mid) \
+                                       VALUES ({cid},{mid})".format(cid=cur_cid,
+                                                                    mid=cur_mid_last))
+                else:
+                    if len(list(self.c.execute("SELECT * FROM ctd_relationships WHERE cid={cid} AND mid={mid}".
+                                   format(cid=cur_cid,
+                                          mid=type_period_info[0][0])))) == 0:
+                        self.c.execute("INSERT INTO ctd_relationships (cid, mid) \
+                                           VALUES ({cid},{mid})".format(cid=cur_cid,
+                                                                        mid=type_period_info[0][0]))
+
+                # update type->author information
+                type_author_info = list(self.c.execute("SELECT * FROM ctd_metas WHERE name='{}'".
+                                                       format("author_" + item['author'])))
+                if len(type_author_info) == 0:
+                    self.c.execute("INSERT INTO ctd_metas (name,slug,type,count,parent) \
+                                                           VALUES ('{name}','{name}','category',1,0)".
+                                   format(name="author_" + item["author"]))
+
+                    cur_mid_author = self.c.lastrowid
+
+                    self.c.execute("INSERT INTO ctd_relationships (cid, mid) \
+                                       VALUES ({cid},{mid})".format(cid=cur_cid,
+                                                                    mid=cur_mid_author))
+                else:
+                    if len(list(self.c.execute("SELECT * FROM ctd_relationships WHERE cid={cid} AND mid={mid}".
+                                                       format(cid=cur_cid,
+                                                              mid=type_author_info[0][0])))) == 0:
+                        self.c.execute("INSERT INTO ctd_relationships (cid, mid) \
+                                           VALUES ({cid},{mid})".format(cid=cur_cid,
+                                                                        mid=type_author_info[0][0]))
+
+                # update type information
+                type_info = list(self.c.execute("SELECT * FROM ctd_metas WHERE name='{}'".format(item['type'])))
+                if len(type_info) == 0:
+                    self.c.execute("INSERT INTO ctd_metas (name,slug,type,count,parent) \
+                                                           VALUES ('{name}','{name}','category',1,0)".
+                                   format(name=item["type"]))
+
+                    cur_mid_type = self.c.lastrowid
+
+                    self.c.execute("INSERT INTO ctd_relationships (cid, mid) \
+                                       VALUES ({cid},{mid})".format(cid=cur_cid,
+                                                                    mid=cur_mid_type))
+                else:
+                    if len(list(self.c.execute("SELECT * FROM ctd_relationships WHERE cid={cid} AND mid={mid}".
+                                                       format(cid=cur_cid,
+                                                              mid=type_info[0][0])))) == 0:
+                        self.c.execute("INSERT INTO ctd_relationships (cid, mid) \
+                                           VALUES ({cid},{mid})".format(cid=cur_cid,
+                                                                        mid=type_info[0][0]))
 
             except Exception as e:
                 fail_counter += 1

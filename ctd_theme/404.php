@@ -8,7 +8,7 @@
             <p><?php _e('妳想查看的頁面已被轉移或刪除了, 要不要搜索看看: '); ?></p>
             <form method="post">
                 <p><input type="text" name="s" class="text" autofocus /></p>
-                <p><button type="submit" class="submit"><?php _e('檢索索'); ?></button></p>
+                <p><button type="submit" class="submit"><?php _e('檢索'); ?></button></p>
             </form>
         </div>
 

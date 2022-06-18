@@ -2,6 +2,7 @@ from qcloud_cos import CosS3Client
 import time
 from os.path import exists
 import sqlite3
+import os
 
 
 def get_time():
@@ -157,6 +158,14 @@ class CosDB:
 
         print(ok_msg("pushing {} books and {} types, {} fail".
                      format(str(ok_counter), str(type_counter), str(fail_counter))))
+
+    def update_db_version(self):
+        if not self.init_status:
+            raise ConnectionError("fail to initialized")
+        with open("db_version_temp", "w") as fp:
+            fp.write(str(int(time.time())) + str(self.length()))
+        self.__upload__("db_version_temp",  "version")
+        os.remove("db_version_temp")
 
     def commit(self):
         if not self.init_status:

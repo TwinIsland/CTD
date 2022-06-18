@@ -6,7 +6,7 @@
 
 <footer id="footer" role="contentinfo">
     &copy; <?php echo date('Y'); ?> <a href="<?php $this->options->siteUrl(); ?>"><?php $this->options->title(); ?></a>.
-    <a href="erdao.me" target="_blank">Power by Erdao.CTD</a>
+    <a href="https://erdao.me" target="_blank">Power by Erdao.CTD</a>
 </footer><!-- end #footer -->
 
 <?php $this->footer(); ?>

@@ -47,7 +47,7 @@
             <div class="site-search col-3 kit-hidden-tb">
                 <form id="search" method="post" action="<?php $this->options->siteUrl(); ?>" role="search">
                     <label for="s" class="sr-only"><?php _e('搜索關鍵字'); ?></label>
-                    <input type="text" id="s" name="s" class="text" placeholder="<?php _e('輸入關鍵字搜索'); ?>" />
+                    <input type="text" id="s" name="s" class="text" placeholder="<?php _e('檢索'); ?>" />
                     <button type="submit" class="submit"><?php _e('搜索'); ?></button>
                 </form>
             </div>
