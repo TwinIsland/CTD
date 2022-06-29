@@ -60,10 +60,10 @@ class CosDB:
     data = [
     {
         "title": "book title",
-        "author": "book author",   # Set as "NULL" if no info
+        "author": "book author",    # Set as "NULL" if no info
         "type": "book type",
-        "publish": "when publish"  # Set as "NULL" if no info,
-        "dir": "file address"
+        "publish": "when publish",  # Set as "NULL" if no info,
+        "dir": "file address",
     }
     ]
     '''
@@ -164,8 +164,9 @@ class CosDB:
             raise ConnectionError("fail to initialized")
         with open("db_version_temp", "w") as fp:
             fp.write(str(int(time.time())) + str(self.length()))
-        self.__upload__("db_version_temp",  "version")
+        self.__upload__("db_version_temp", "version")
         os.remove("db_version_temp")
+        print(ok_msg("ok: update db version"))
 
     def commit(self):
         if not self.init_status:

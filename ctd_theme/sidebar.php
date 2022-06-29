@@ -1,8 +1,5 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
-
-<?php
-$cos_url = "https://cdn.erdao.me/ctd"
-?>
+<?php require_once 'auth.php'?>
 
 <div class="col-mb-12 col-offset-1 col-3 kit-hidden-tb" id="secondary" role="complementary">
     <?php if (!empty($this->options->sidebarBlock) && in_array('ShowRecentPosts', $this->options->sidebarBlock)): ?>
@@ -23,7 +20,14 @@ $cos_url = "https://cdn.erdao.me/ctd"
 
     <section class="widget">
         <h3 class="widget-title"><?php _e('數據版本'); ?></h3>
-        <p style="font-family: cursive"> <?php echo file_get_contents($cos_url.'/version') ?></p>
+        <?php
+        $content_url = get_auth_url('ctd/version');
+        $version = file_get_contents(get_auth_url('ctd/version'));
+        if ($version == -1) {
+            $version = "unknown";
+        }
+        ?>
+        <p style="font-family: cursive"> <?php echo $version ?></p>
     </section>
 
 </div><!-- end #sidebar -->

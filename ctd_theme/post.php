@@ -1,10 +1,10 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <?php $this->need('header.php'); ?>
+<?php require 'auth.php'?>
 
-<!--CONFIG-->
+
 <?php
-$base_url= "https://ctd.erdao.me";
-$cos_url = "https://cdn.erdao.me/ctd"
+$base_url= $this->options->siteUrl();
 ?>
 
 <?php
@@ -59,12 +59,17 @@ function get_encoding($test_str){
         <br>
         <div class="post-content" itemprop="articleBody">
             <?php
-            $c = file_get_contents($cos_url.'/'.$this->cid.'.txt');
-            $enc = get_encoding($c);
-            if ($enc === False){
-                echo "编码错误 cid_refer: ".$this->cid;
+            $content_url = get_auth_url('ctd/'.$this->cid.'.txt');
+            if ($content_url == -1) {
+                echo "sdk error";
             } else {
-                echo nl2br(mb_convert_encoding($c,"utf-8", $enc));
+                $c = file_get_contents($content_url);
+                $enc = get_encoding($c);
+                if ($enc === False) {
+                    echo "编码错误 cid_refer: " . $this->cid;
+                } else {
+                    echo nl2br(mb_convert_encoding($c, "utf-8", $enc));
+                }
             }
             ?>
         </div>

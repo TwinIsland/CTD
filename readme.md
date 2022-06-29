@@ -104,6 +104,10 @@ More configuration information please refer Tencent API document.
 
 ## Theme
 
-Redesign and revise based on default theme of Typecho, compatible with `TencentCosDB`
+Redesign and revise based on default theme of Typecho, compatible with `CosDB`
 
 ![demo](pic/demo.png)
+
+### Usage
+
+config the `auth.php` and use it as you wish

@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c9de09f-a9e2-41fe-8dd6-5bed2dac5c3b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/ctd_theme/api/db_version.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TencentCOS.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctd_theme/404.php" beforeDir="false" afterPath="$PROJECT_DIR$/ctd_theme/404.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctd_theme/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/ctd_theme/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctd_theme/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/ctd_theme/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CosDB.py" beforeDir="false" afterPath="$PROJECT_DIR$/CosDB.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ctd_theme/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/ctd_theme/sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testTencentCos.py" beforeDir="false" afterPath="$PROJECT_DIR$/testCosDB.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/updateTypechoDB.py" beforeDir="false" afterPath="$PROJECT_DIR$/updateTypechoDB.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +210,7 @@
       <workItem from="1655433783109" duration="4850000" />
       <workItem from="1655488583954" duration="11787000" />
       <workItem from="1655508151948" duration="7623000" />
-      <workItem from="1655579332751" duration="941000" />
+      <workItem from="1655579332751" duration="4542000" />
     </task>
     <servers />
   </component>
