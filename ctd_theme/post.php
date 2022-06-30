@@ -4,7 +4,7 @@
 
 
 <?php
-$base_url= $this->options->siteUrl();
+$base_url= $this->options->siteUrl;
 ?>
 
 <?php
