@@ -110,4 +110,4 @@ Redesign and revise based on default theme of Typecho, compatible with `CosDB`
 
 ### Usage
 
-config the `auth.php` and use it as you wish
+unzip `cos_sdk.zip`  and config `auth.php` then use it as you wish
